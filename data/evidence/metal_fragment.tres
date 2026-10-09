@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="PolysemicObject" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/polysemic_object.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+object_id = "metal_fragment"
+display_name = "Twisted Metal Fragment"
+neutral_description = "A shard of metal embedded in rock. Not rusted."
+variants = {
+"conspiratorial": "Military-grade titanium. Stamped with a serial number.",
+"exogenous": "Alloy impossible. Element 115. Hull debris.",
+"psychogenic": "A piece of the car's fender. You remember the impact."
+}
+w_tags = Array[String](["what", "where"])
+w_answers_per_axis = {
+"conspiratorial": {
+"what": "Planted Evidence",
+"where": "Base 8"
+},
+"exogenous": {
+"what": "Crashed Craft",
+"where": "Papoose Dry Lake"
+},
+"psychogenic": {
+"what": "Car Wreckage",
+"where": "Accident Site"
+}
+}
+lead_unlocks = {}
+unlocks_journal_entries = Array[String]([])

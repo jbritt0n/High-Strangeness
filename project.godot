@@ -1,0 +1,52 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
+[application]
+
+config/name="High Strangeness"
+run/main_scene="res://scenes/motel_room.tscn"
+config/features=PackedStringArray("4.6", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[autoload]
+
+SignalBus="*res://scripts/autoload/signal_bus.gd"
+TheoryDatabase="*res://scripts/autoload/theory_database.gd"
+EvidenceDatabase="*res://scripts/autoload/evidence_database.gd"
+LeadManager="*res://scripts/autoload/lead_manager.gd"
+JournalManager="*res://scripts/autoload/journal_manager.gd"
+GameState="*res://scripts/autoload/game_state.gd"
+InputSetup="*res://scripts/autoload/input_setup.gd"
+Dialogue="*res://scripts/autoload/dialogue.gd"
+DayCycle="*res://scripts/autoload/day_cycle.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/window_width_override=1600
+window/size/window_height_override=900
+window/size/mode=2
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[filesystem]
+
+import/blender/enabled=false
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.12, 0.11, 0.14, 1)

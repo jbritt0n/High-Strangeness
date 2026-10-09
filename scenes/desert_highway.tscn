@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/scene_switcher.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2"]
+[ext_resource type="Script" path="res://scripts/world/motel_seed.gd" id="4"]
+[ext_resource type="Script" path="res://scripts/world/door.gd" id="5"]
+[ext_resource type="Texture2D" path="res://icon.svg" id="6"]
+[ext_resource type="PackedScene" path="res://scenes/ui/examination_ui.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://scenes/ui/journal_ui.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://scenes/ui/inquiry_board.tscn" id="9"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_seed"]
+size = Vector2(96, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
+size = Vector2(70, 160)
+
+[node name="DesertHighway" type="Node2D"]
+script = ExtResource("1")
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(220, 360)
+
+[node name="Player" parent="." instance=ExtResource("2")]
+position = Vector2(220, 360)
+
+[node name="SeedMetal" type="Area2D" parent="."]
+position = Vector2(700, 380)
+input_pickable = true
+script = ExtResource("4")
+seed_id = "metal_fragment"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SeedMetal"]
+shape = SubResource("RectangleShape2D_seed")
+
+[node name="Sprite2D" type="Sprite2D" parent="SeedMetal"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("6")
+
+[node name="Label" type="Label" parent="SeedMetal"]
+offset_left = -54.0
+offset_top = 56.0
+offset_right = 70.0
+offset_bottom = 80.0
+text = "Metal Fragment (click)"
+
+[node name="DoorMotel" type="Area2D" parent="."]
+position = Vector2(80, 360)
+script = ExtResource("5")
+target_scene = "res://scenes/motel.tscn"
+spawn_point = "SpawnPoint"
+required_lead_id = ""
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorMotel"]
+shape = SubResource("RectangleShape2D_door")
+
+[node name="Label" type="Label" parent="DoorMotel"]
+offset_left = -30.0
+offset_top = 90.0
+offset_right = 90.0
+offset_bottom = 114.0
+text = "← Motel"
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Info" type="Label" parent="HUD"]
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 900.0
+offset_bottom = 60.0
+text = "DESERT HIGHWAY  —  Click the Metal Fragment to examine. Walk left through the door to return to the Motel."
+
+[node name="ExaminationUI" parent="." instance=ExtResource("7")]
+
+[node name="JournalUI" parent="." instance=ExtResource("8")]
+
+[node name="InquiryBoard" parent="." instance=ExtResource("9")]

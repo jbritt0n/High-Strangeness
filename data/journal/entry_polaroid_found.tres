@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="JournalEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/journal_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = "entry_polaroid_01"
+title = "The Polaroid"
+ground_truth_event = "I found a Polaroid in the dresser. It shows a highway."
+lens_templates = {
+"conspiratorial": "I found a Polaroid. It's staged. Someone wanted me to find it.",
+"exogenous": "I found a Polaroid. The gravitational distortions are unmistakable.",
+"psychogenic": "I found a Polaroid. It's the same road from the accident. I can't escape it."
+}
+referenced_evidence_ids = Array[String](["polaroid_01"])

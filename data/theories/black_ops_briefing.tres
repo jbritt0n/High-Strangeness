@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TheoryDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/theory_definition.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+theory_id = "black_ops_briefing"
+display_name = "The Black Ops Briefing"
+axis = "conspiratorial"
+voice_description = "Clipped, paranoid, redacting itself mid-sentence."
+color_tint = Color(0.1, 0.35, 0.18, 1)
+motel_name = "SAFEHOUSE 8"
+motel_color = Color(0.2, 0.6, 0.3, 1)
+unlock_condition_flag = ""

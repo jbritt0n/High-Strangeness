@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="PolysemicObject" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/polysemic_object.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+object_id = "polaroid_01"
+display_name = "Faded Polaroid"
+neutral_description = "A highway at dusk. No date, no cars."
+variants = {
+"conspiratorial": "A reflection in the corner—someone was watching.",
+"exogenous": "Gravitational lensing over the road. Find that stretch of highway.",
+"psychogenic": "The road from the accident. You were there."
+}
+w_tags = Array[String](["where", "when"])
+w_answers_per_axis = {
+"conspiratorial": {
+"when": "Last Week",
+"where": "Staged Location"
+},
+"exogenous": {
+"when": "1947",
+"where": "Crash Site"
+},
+"psychogenic": {
+"when": "Day of the Crash",
+"where": "Accident Site"
+}
+}
+lead_unlocks = {
+"exogenous": "lead_highway",
+"psychogenic": "lead_highway"
+}
+unlocks_journal_entries = Array[String](["entry_polaroid_01"])
