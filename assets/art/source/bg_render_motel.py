@@ -54,7 +54,7 @@ def kids(name):
 
 
 groups = {
-    "occ_car": kids("Car"),
+    "occ_car": kids("Truck"),
     "occ_sign": kids("Sign"),
     "occ_dumpster": [O["p_Dumpster"], O["p_DumpLid"]],
     "occ_lamp": [O["p_LampPole"], O["p_LampArm"], O["p_LampHead"]],

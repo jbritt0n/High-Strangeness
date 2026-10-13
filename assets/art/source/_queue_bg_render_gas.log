@@ -1,0 +1,25 @@
+00:00.032  color_management | Using OCIO=C:\Program Files\WindowsApps\BlenderFoundation.Blender_5.2.2.0_x64__ppwjx1n5r4v9t\Blender\5.2\datafiles\colormanagement\config.ocio
+00:04.282  blend            | Read blend: "C:\Users\jonathan.britton\OneDrive - WiseTech Global Pty Ltd\Documents\high_strangeness\assets\art\source\_gas_render.blend"
+raw start
+18:32.579  render           | Saved: 'C:\Users\jonathan.britton\OneDrive - WiseTech Global Pty Ltd\Documents\high_strangeness\assets\art\iso\_source\gas_raw.png'
+raw done
+18:49.375  render           | Saved: 'C:\Users\jonathan.britton\OneDrive - WiseTech Global Pty Ltd\Documents\high_strangeness\assets\art\iso\_source\gs_occ_pumps_mask.png'
+mask gs_occ_pumps
+19:02.704  render           | Saved: 'C:\Users\jonathan.britton\OneDrive - WiseTech Global Pty Ltd\Documents\high_strangeness\assets\art\iso\_source\gs_occ_sign_mask.png'
+mask gs_occ_sign
+19:12.375  render           | Saved: 'C:\Users\jonathan.britton\OneDrive - WiseTech Global Pty Ltd\Documents\high_strangeness\assets\art\iso\_source\gs_occ_tires_mask.png'
+mask gs_occ_tires
+19:22.079  render           | Saved: 'C:\Users\jonathan.britton\OneDrive - WiseTech Global Pty Ltd\Documents\high_strangeness\assets\art\iso\_source\gs_occ_ice_mask.png'
+mask gs_occ_ice
+19:31.813  render           | Saved: 'C:\Users\jonathan.britton\OneDrive - WiseTech Global Pty Ltd\Documents\high_strangeness\assets\art\iso\_source\gs_occ_phone_mask.png'
+mask gs_occ_phone
+19:40.860  render           | Saved: 'C:\Users\jonathan.britton\OneDrive - WiseTech Global Pty Ltd\Documents\high_strangeness\assets\art\iso\_source\gs_occ_air_mask.png'
+mask gs_occ_air
+19:58.532  render           | Saved: 'C:\Users\jonathan.britton\OneDrive - WiseTech Global Pty Ltd\Documents\high_strangeness\assets\art\iso\_source\gs_occ_canopy_mask.png'
+mask gs_occ_canopy
+20:10.016  render           | Saved: 'C:\Users\jonathan.britton\OneDrive - WiseTech Global Pty Ltd\Documents\high_strangeness\assets\art\iso\_source\gs_occ_palm_mask.png'
+mask gs_occ_palm
+ALL DONE {"occluders": {"gs_occ_pumps": {"x": 1941, "y": 1021, "w": 297, "h": 313, "pivot": [2089.7, 1270.5]}, "gs_occ_sign": {"x": 2682, "y": 1022, "w": 176, "h": 596, "pivot": [2768.5, 1609.9]}, "gs_occ_tires": {"x": 2730, "y": 1404, "w": 65, "h": 74, "pivot": [2762.9, 1465.6]}, "gs_occ_ice": {"x": 1912, "y": 1004, "w": 92, "h": 70, "pivot": [1965.3, 1049.8]}, "gs_occ_phone": {"x": 1798, "y": 947, "w": 34, "h": 85, "pivot": [1823.8, 1030.0]}, "gs_occ_air": {"x": 2514, "y": 1332, "w": 23, "h": 97, "pivot": [2525.3, 1426.0]}, "gs_occ_canopy": {"x": 1698, "y": 710, "w": 775, "h": 437, "pivot": [1942.6, 1344.0]}, "gs_occ_palm": {"x": 2922, "y": 1352, "w": 262, "h": 290, "pivot": [3045.7, 1635.3]}}}
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:37:04)
+
+Blender quit

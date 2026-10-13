@@ -1,0 +1,19 @@
+# This is an Asset Catalog Definition file for Blender.
+#
+# Empty lines and lines starting with `#` will be ignored.
+# The first non-ignored line should be the version indicator.
+# Other lines are of the format "UUID:catalog/path/for/assets:simple catalog name"
+
+VERSION 1
+
+6c5473d1-044e-50f1-9561-61b1c585a88d:Gas Station:Gas Station
+0735fd6e-425f-538a-ae61-7d16718472a7:Gas Station/Garage Supplies:Gas Station-Garage Supplies
+b0d44bbe-cd98-59dd-80e2-abbf4e797411:Gas Station/Pumps:Gas Station-Pumps
+c9edc125-0c03-5010-96be-c003f5aec219:Props:Props
+0a643b22-48ac-565b-a211-ba878efc50bb:Props/Barrels & Tanks:Props-Barrels & Tanks
+1e4c5197-822c-51b9-b596-ea96e208e15f:Props/Boxes & Crates:Props-Boxes & Crates
+6fb1ac22-f3f9-5674-ae03-50a5856e1e7f:Props/Debris:Props-Debris
+b7d11e84-d7fe-563b-a0f6-2b5335799415:Props/Utility & Signs:Props-Utility & Signs
+517f37e6-2c13-5abb-9a9c-bccc41d3281c:Tools:Tools
+2f357803-5c86-5f1e-b23a-7dd726e39251:Vegetation:Vegetation
+f4a98802-d938-5e12-8bb4-279214512b32:Vehicles:Vehicles

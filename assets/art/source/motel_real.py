@@ -452,8 +452,10 @@ SKIP_BEVEL = ("iso_", "c_", "HwDash", "HwEdge", "Park", "Lot", "Highway", "Apron
 
 def bevel_all():
     car = {o.name for o in O["Car"].children_recursive}
+    # downloaded assets (the BlendKit truck) are already detailed: leave them alone
+    bought = {o.name for o in O["Truck"].children_recursive} if O.get("Truck") else set()
     for o in S.objects:
-        if o.type != "MESH" or o.name.startswith(SKIP_BEVEL):
+        if o.type != "MESH" or o.name.startswith(SKIP_BEVEL) or o.name in bought:
             continue
         for md in [md for md in o.modifiers if md.name.startswith("rl_")]:
             o.modifiers.remove(md)
@@ -575,9 +577,17 @@ def props():
         add_box(f"rl_Downspout{i}", (x, y, 1.7), (0.1, 0.1, 3.4), "Trim")
 
 
-def scatter_group():
-    """GN on the ground plane: pebbles + dry grass tufts near the motel only."""
-    name = "rl_scatter"
+MOTEL_EXCLUDE = [(-18.5, 14.5, -12.8, 15.8), (-200, 200, -26.5, -13.5), (0.0, 8.0, -18.0, -9.0)]
+
+
+def scatter_group(name="rl_scatter", ground_rot=None, exclude=None, near=(75.0, 70.0),
+                  rock_density=0.5, grass_density=0.5):
+    """GN on a ground plane: pebbles + dry grass tufts, kept out of `exclude`
+    (world-metre rects x0, x1, y0, y1) and limited to what the camera can see."""
+    if ground_rot is None:
+        ground_rot = O["iso_Ground"].rotation_euler.z
+    if exclude is None:
+        exclude = MOTEL_EXCLUDE
     g = bpy.data.node_groups.get(name)
     if g:
         bpy.data.node_groups.remove(g)
@@ -605,26 +615,28 @@ def scatter_group():
         return fm("MULTIPLY", a, b)
 
     posn = nd.new("GeometryNodeInputPosition")
-    # ground object is rotated 45 deg about Z; masks are authored in world metres
+    # the ground object may be rotated about Z; masks are authored in world metres
     wpos = nd.new("ShaderNodeVectorRotate")
     wpos.rotation_type = "Z_AXIS"
-    wpos.inputs["Angle"].default_value = O["iso_Ground"].rotation_euler.z
+    wpos.inputs["Angle"].default_value = ground_rot
     ln.new(posn.outputs[0], wpos.inputs["Vector"])
     sep = nd.new("ShaderNodeSeparateXYZ")
     ln.new(wpos.outputs[0], sep.inputs[0])
     px, py = sep.outputs[0], sep.outputs[1]
-    excl = fm("MAXIMUM", inside(px, py, -18.5, 14.5, -12.8, 15.8), inside(px, py, -200, 200, -26.5, -13.5))
-    excl = fm("MAXIMUM", excl, inside(px, py, 0.0, 8.0, -18.0, -9.0))
-    # only within ~45 m of the motel (the camera never sees further out)
-    near = fm("LESS_THAN", fm("ADD", fm("ABSOLUTE", fm("SUBTRACT", px, py)), 0.0), 75.0)
-    near = fm("MULTIPLY", near, fm("LESS_THAN", fm("ABSOLUTE", fm("ADD", px, py)), 70.0))
+    excl = None
+    for r in exclude:
+        e = inside(px, py, *r)
+        excl = e if excl is None else fm("MAXIMUM", excl, e)
+    # only within what the camera sees (|x - y| and |x + y| bands)
+    nearm = fm("LESS_THAN", fm("ABSOLUTE", fm("SUBTRACT", px, py)), near[0])
+    nearm = fm("MULTIPLY", nearm, fm("LESS_THAN", fm("ABSOLUTE", fm("ADD", px, py)), near[1]))
     tex = nd.new("ShaderNodeTexNoise")
     tex.inputs["Scale"].default_value = 0.12
     ln.new(wpos.outputs[0], tex.inputs["Vector"])
     clump = nd.new("ShaderNodeMapRange")
     ln.new(tex.outputs[0], clump.inputs[0])
     clump.inputs[1].default_value, clump.inputs[2].default_value = 0.4, 0.65
-    mask = fm("MULTIPLY", fm("SUBTRACT", 1.0, excl), near)
+    mask = fm("MULTIPLY", fm("SUBTRACT", 1.0, excl), nearm)
 
     def layer(density, mesh_node, smin, smax, flat, mat, clumped):
         d = nd.new("GeometryNodeDistributePointsOnFaces")
@@ -668,8 +680,8 @@ def scatter_group():
     tuft.inputs["Object"].default_value = tuft_mesh()
     join = nd.new("GeometryNodeJoinGeometry")
     ln.new(gi.outputs[0], join.inputs[0])
-    ln.new(layer(0.5, rock, 0.03, 0.12, 0.45, "rl_rock", False), join.inputs[0])
-    ln.new(layer(0.5, tuft, 0.15, 0.35, 1.0, "rl_grass", True), join.inputs[0])
+    ln.new(layer(rock_density, rock, 0.03, 0.12, 0.45, "rl_rock", False), join.inputs[0])
+    ln.new(layer(grass_density, tuft, 0.15, 0.35, 1.0, "rl_grass", True), join.inputs[0])
     ln.new(join.outputs[0], go.inputs[0])
     return g
 
@@ -909,4 +921,7 @@ def build():
     print("motel_real: built")
 
 
-build()
+# Exec'd with __name__ == "motel_real" to rebuild the motel; other scene
+# builders exec it under another name to reuse the helpers only.
+if __name__ in ("motel_real", "__main__"):
+    build()
