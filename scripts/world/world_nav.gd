@@ -7,7 +7,7 @@ extends Node2D
 const CELL := 0.25
 const AGENT_RADIUS := 0.3
 
-## Which hand-authored layout to use: "motel" (exterior lot) or "room".
+## Which hand-authored layout to use: "motel" (exterior lot), "room" or "highway".
 @export var layout: String = "motel"
 
 # Grid bounds in world metres.
@@ -42,16 +42,59 @@ func _apply_layout() -> void:
 				Rect2(-1.9, 1.75, 0.6, 0.7),      # filing cabinet
 			]
 			blocked_circles = [[Vector2(1.55, 0.35), 0.62]]  # round table
+		"highway":
+			MIN = Vector2(-24.0, -8.0)
+			MAX = Vector2(23.0, 13.0)
+			# The road + shoulders runs along X. It's cut short top-left before
+			# the horizon (x - y must stay above about -21, where the art turns
+			# into ridges) and bottom-right at the frame edge, where the motel
+			# exit is. The gravel pull-off is on the north side.
+			walk_rects = [
+				Rect2(-15.0, -6.2, 31.0, 12.4),
+				Rect2(-21.0, -6.2, 7.0, 6.0),
+				Rect2(15.0, -1.5, 6.5, 7.7),
+				Rect2(-9.0, 4.5, 10.0, 6.0),
+			]
+			blocked_rects = []
+			# Boulders by the fragment.
+			blocked_circles = [
+				[Vector2(0.9, 10.9), 0.75],
+				[Vector2(1.9, 10.2), 0.5],
+				[Vector2(-0.3, 11.6), 0.4],
+			]
+		"gas":
+			MIN = Vector2(-24.0, -8.0)
+			MAX = Vector2(23.0, 11.0)
+			# Same road as the highway scene, plus the station forecourt on the
+			# north side (the building front is at y 9.6).
+			walk_rects = [
+				Rect2(-15.0, -6.2, 31.0, 12.4),
+				Rect2(-21.0, -6.2, 7.0, 6.0),
+				Rect2(15.0, -1.5, 6.5, 7.7),
+				Rect2(-11.0, 4.0, 22.0, 5.3),
+			]
+			# Pump island + canopy posts, ice chest.
+			blocked_rects = [Rect2(-5.7, 6.05, 5.4, 0.9), Rect2(-8.6, 9.0, 1.2, 0.6)]
+			# Pylon sign, tyre stack, payphone, air pump.
+			blocked_circles = [
+				[Vector2(9.0, 6.5), 0.3],
+				[Vector2(6.4, 9.0), 0.45],
+				[Vector2(-9.6, 8.4), 0.2],
+				[Vector2(3.6, 7.6), 0.2],
+			]
 		_:
-			MIN = Vector2(-21.0, -18.0)
+			MIN = Vector2(-21.0, -25.0)
 			MAX = Vector2(16.0, 9.0)
-			# Parking lot (right of the west wing's canopy line) + the driveway.
+			# Parking lot (right of the west wing's canopy line), the driveway,
+			# and the highway out front as far as the west edge of the frame,
+			# where it leads on to the desert highway scene.
 			walk_rects = [
 				Rect2(-9.8, -10.5, 23.3, 17.7),
 				Rect2(0.5, -17.5, 7.0, 7.5),
+				Rect2(-13.6, -23.6, 17.6, 7.4),
 			]
 			# Parked car; (the sign and dumpster stand outside the walkable area).
-			blocked_rects = [Rect2(-7.7, 2.0, 2.6, 5.7)]
+			blocked_rects = [Rect2(-7.5, 2.7, 2.2, 4.2)]  # the Blazer
 			# Streetlight, burning barrel. [centre, radius]
 			blocked_circles = [
 				[Vector2(-4.0, -8.5), 0.45],

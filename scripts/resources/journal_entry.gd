@@ -13,6 +13,12 @@ extends Resource
 
 @export var referenced_evidence_ids: Array[String] = []
 
+# Photo evidence: reading id -> full text, used when the player has decided
+# what a referenced photo shows. Takes precedence over the axis lenses.
+@export var reading_templates: Dictionary = {}
+# Appended to a reading's text once that evidence has been burned.
+@export_multiline var locked_suffix: String = ""
+
 # Runtime-only diff state (not serialized).
 var _has_been_read: bool = false
 var _snapshot: String = ""
@@ -28,6 +34,13 @@ func _resolve_axis(state: ParadigmState) -> String:
 
 ## The text as it currently reads given the worldview.
 func get_rendered_text(state: ParadigmState) -> String:
+	for ev_id in referenced_evidence_ids:
+		var reading := str(state.evidence_readings.get(ev_id, ""))
+		if reading != "" and reading_templates.has(reading):
+			var text := str(reading_templates[reading])
+			if state.locked_evidence.has(ev_id):
+				text += locked_suffix
+			return text
 	var axis := _resolve_axis(state)
 	if axis != "" and lens_templates.has(axis):
 		return str(lens_templates[axis])

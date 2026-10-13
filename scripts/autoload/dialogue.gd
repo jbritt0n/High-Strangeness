@@ -12,7 +12,8 @@ extends CanvasLayer
 signal _advance
 signal _picked(index: int)
 
-const CHARS_PER_SEC := 80.0
+# Typing speed; set from the Options menu via Settings.
+var chars_per_sec: float = 80.0
 
 const VOICE_COLORS := {
 	"": Color(0.86, 0.83, 0.77),
@@ -236,7 +237,7 @@ func _end() -> void:
 func _process(delta: float) -> void:
 	if not _typing:
 		return
-	_progress += delta * CHARS_PER_SEC
+	_progress += delta * chars_per_sec
 	_text.visible_characters = int(_progress)
 	if _progress >= _total_chars:
 		_finish_typing()

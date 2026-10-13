@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="JournalEntry" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/journal_entry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+entry_id = "entry_fragment_01"
+title = "The Fragment"
+ground_truth_event = "Drove out to the road in the Polaroid. Found a piece of bright metal in the rocks at the pull-off. Not rusted. I brought it back with me."
+lens_templates = {}
+referenced_evidence_ids = Array[String](["metal_fragment"])
+reading_templates = {
+"fender": "The metal at the pull-off is chrome trim. Off a car. I knew the curve of it before I knew why. I've put it in the drawer and I keep opening the drawer.",
+"hull": "The metal at the pull-off folds itself back when you bend it. Colours on it that aren't colours. Whatever it came off was big and it came down hard, right where the Polaroid was taken.",
+"scrap": "Picked up a piece of scrap at the pull-off. Truck tin, probably. I drove an hour to find litter. I've kept it anyway, which tells me something I'd rather not write down.",
+"stamped": "Serial number on the metal from the pull-off, half filed away. A contractor's mark. They never take it all the way off. Someone wants me to know exactly who I'm dealing with."
+}
+locked_suffix = "
+
+[i]I've stopped arguing with it. This is what it is.[/i]"

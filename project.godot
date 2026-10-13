@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="High Strangeness"
-run/main_scene="res://scenes/motel_room.tscn"
+run/main_scene="res://scenes/title_screen.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -30,14 +30,15 @@ GameState="*res://scripts/autoload/game_state.gd"
 InputSetup="*res://scripts/autoload/input_setup.gd"
 Dialogue="*res://scripts/autoload/dialogue.gd"
 DayCycle="*res://scripts/autoload/day_cycle.gd"
+Settings="*res://scripts/autoload/settings.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/mode=2
 window/size/window_width_override=1600
 window/size/window_height_override=900
-window/size/mode=2
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

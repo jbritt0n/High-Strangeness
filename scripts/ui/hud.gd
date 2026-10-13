@@ -5,6 +5,7 @@ extends CanvasLayer
 var _day: Label
 var _bar: ProgressBar
 var _label: Label
+var _items: Label
 
 
 func _ready() -> void:
@@ -42,10 +43,26 @@ func _ready() -> void:
 	_label.modulate = Color(1, 1, 1, 0.6)
 	box.add_child(_label)
 
+	_items = Label.new()
+	_items.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_items.add_theme_font_size_override("font_size", 13)
+	_items.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.9))
+	_items.modulate = Color(1, 1, 1, 0.75)
+	box.add_child(_items)
+
+	SignalBus.inventory_changed.connect(func(_i: Array): _refresh_items())
+	_refresh_items()
 	SignalBus.energy_changed.connect(_on_energy)
 	SignalBus.day_started.connect(func(_d: int): _refresh_day())
 	_refresh_day()
 	_on_energy(GameState.energy, GameState.max_energy)
+
+
+func _refresh_items() -> void:
+	var names: Array[String] = []
+	for id in GameState.inventory:
+		names.append(str(GameState.ITEM_NAMES.get(id, id)))
+	_items.text = "CARRYING: " + ", ".join(names) if not names.is_empty() else ""
 
 
 func _refresh_day() -> void:

@@ -6,10 +6,23 @@
 script = ExtResource("1")
 entry_id = "entry_polaroid_01"
 title = "The Polaroid"
-ground_truth_event = "I found a Polaroid in the dresser. It shows a highway."
+ground_truth_event = "Found a Polaroid face-up in the motel lot, out by the rooms. A highway at dusk, a mountain, a light on the ridge that might be a light. Somebody's thumb in the corner. I don't know whose. I don't know what it's of. I keep looking anyway."
 lens_templates = {
-"conspiratorial": "I found a Polaroid. It's staged. Someone wanted me to find it.",
-"exogenous": "I found a Polaroid. The gravitational distortions are unmistakable.",
-"psychogenic": "I found a Polaroid. It's the same road from the accident. I can't escape it."
+"conspiratorial": "Found a Polaroid in the motel lot. It's staged. Someone wanted me to find it.",
+"exogenous": "Found a Polaroid in the motel lot. The distortion over the road is unmistakable.",
+"psychogenic": "Found a Polaroid in the motel lot. It's the road from the accident. I can't get away from it."
 }
 referenced_evidence_ids = Array[String](["polaroid_01"])
+reading_templates = {
+"accident": "It's the road. The Polaroid in the lot is that road: the skid marks, the guardrail folded like paper, the one headlamp still burning on the shoulder. \"I'm sorry,\" it says on the border. I don't know who wrote it. I know who should have.",
+"bend": "The road in the Polaroid bends where the road doesn't. The centre line steps around something in the middle distance that the camera couldn't see. NOT A LENS FAULT, written on the border, like somebody already had this argument with themselves and lost.",
+"light": "Polaroid from the motel lot. Two lights low over the ridge, steady, paired. Not stars. Not aircraft. I've seen that return before, on a scope, on a night I was told to log as weather. The border says 7/2. Find the road. Find the ridge.",
+"planted": "Nobody drops a photograph in a motel parking lot. Somebody leaves one. Paper across the asphalt, a car already pulling away, and two words on the border: for you. It's an invitation or it's a leash. Either way, someone wants me out on that highway.",
+"radar": "There's a radar dome on the ridge in the Polaroid. I'd know that shape blind. SITE 7, on the border. They told me the site was decommissioned. They told me a lot of things.",
+"road": "Polaroid in the lot: a mile marker, a gas station sign, somebody's thumb. MM 117, gas in four miles. A tourist's snapshot, that's all it is. I've written the mile marker down anyway.",
+"shadow": "I took the Polaroid. I'm sure of it now: that's my shadow on the road, my shoulders, my camera. And beside mine, another one, close enough to hold my hand. \"you were here.\" I was. I wasn't alone. I can't remember who I've lost.",
+"watcher": "The Polaroid from the lot has a car in it. Parked on the shoulder, lights on, two men behind the glass looking straight down the lens. They knew where the photographer would stand. Which means they knew where I'd stand. THEY KNEW, the border says. In whose hand?"
+}
+locked_suffix = "
+
+[i]I've stopped arguing with it. This is what it is.[/i]"

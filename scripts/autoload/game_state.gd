@@ -39,6 +39,19 @@ var _exhausted_sent: bool = false
 # Set just before a scene change so the new scene can position the player.
 var pending_spawn_point: String = ""
 
+# One-off story flags, e.g. "visited_highway".
+var flags: Dictionary = {}
+
+# Things the player is carrying (item ids), e.g. "spare_tire", "gas_can".
+var inventory: Array[String] = []
+
+# The car in the motel lot starts with a flat tyre and an empty tank. Repairs
+# persist across days; once both are done the car can be driven (see Car).
+var car: Dictionary = {"tire": false, "fuel": false}
+
+const ITEM_NAMES := {"spare_tire": "Spare tyre", "gas_can": "Gas can"}
+
+
 
 func _ready() -> void:
 	paradigm_state = ParadigmState.new()
@@ -92,8 +105,30 @@ func interpret_evidence(object_id: String, theory_id: String) -> Dictionary:
 	var def := TheoryDatabase.get_definition(theory_id)
 	if obj == null or def == null:
 		return {}
-	var axis := def.axis
-	var proposed: Dictionary = obj.w_answers_per_axis.get(axis, {})
+	return _interpret(obj, def.axis, obj.w_answers_per_axis.get(def.axis, {}),
+			str(obj.lead_unlocks.get(def.axis, "")))
+
+
+## Photo evidence: the player decides what the picture shows. Remembered so the
+## photo stays developed that way, and interpreted like a theory reading.
+func interpret_reading(object_id: String, reading_id: String) -> Dictionary:
+	var obj := EvidenceDatabase.get_object(object_id)
+	if obj == null:
+		return {}
+	var r := obj.get_reading(reading_id)
+	if r.is_empty():
+		return {}
+	var previous := str(paradigm_state.evidence_readings.get(object_id, ""))
+	paradigm_state.evidence_readings[object_id] = reading_id
+	if previous != "" and previous != reading_id:
+		# Changing your mind rewrites what you already wrote down.
+		JournalManager.invalidate_entries_for_evidence(object_id)
+	var result := _interpret(obj, str(r.get("axis", "")), r.get("answers", {}), str(r.get("lead", "")))
+	result["reading"] = reading_id
+	return result
+
+
+func _interpret(obj: PolysemicObject, axis: String, proposed: Dictionary, lead_id: String) -> Dictionary:
 
 	var contradiction := false
 	var aligned := false
@@ -125,8 +160,6 @@ func interpret_evidence(object_id: String, theory_id: String) -> Dictionary:
 	for entry_id in obj.unlocks_journal_entries:
 		JournalManager.unlock_entry(entry_id)
 
-	# Unlock a lead if this axis has one.
-	var lead_id := str(obj.lead_unlocks.get(axis, ""))
 	if lead_id != "":
 		LeadManager.unlock_lead(lead_id)
 
@@ -146,6 +179,10 @@ func commit_evidence(object_id: String, axis: String) -> Dictionary:
 	if obj == null:
 		return {}
 	var proposed: Dictionary = obj.w_answers_per_axis.get(axis, {})
+	# Photo evidence locks the answers of the reading the player settled on.
+	var r := obj.get_reading(str(paradigm_state.evidence_readings.get(object_id, "")))
+	if not r.is_empty():
+		proposed = r.get("answers", {})
 
 	var contradiction := false
 	for w in proposed:
@@ -195,6 +232,35 @@ func restore_energy() -> void:
 	energy = max_energy
 	_exhausted_sent = false
 	SignalBus.energy_changed.emit(energy, max_energy)
+
+
+# ---------------------------------------------------------------------------
+# Inventory & car
+# ---------------------------------------------------------------------------
+
+func has_item(id: String) -> bool:
+	return inventory.has(id)
+
+
+func add_item(id: String) -> void:
+	if not inventory.has(id):
+		inventory.append(id)
+		SignalBus.inventory_changed.emit(inventory.duplicate())
+
+
+func remove_item(id: String) -> void:
+	if inventory.has(id):
+		inventory.erase(id)
+		SignalBus.inventory_changed.emit(inventory.duplicate())
+
+
+func repair_car(part: String) -> void:
+	car[part] = true
+	SignalBus.car_changed.emit()
+
+
+func car_ready() -> bool:
+	return bool(car.get("tire", false)) and bool(car.get("fuel", false))
 
 
 # ---------------------------------------------------------------------------

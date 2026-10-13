@@ -6,7 +6,7 @@
 script = ExtResource("1")
 object_id = "polaroid_01"
 display_name = "Faded Polaroid"
-neutral_description = "A highway at dusk. No date, no cars."
+neutral_description = "A Polaroid, face-up on the asphalt as if it had been waiting. A highway at dusk, a mountain, a smear of light low on the ridge. Somebody's thumb in the corner. No date, no cars. The longer you look, the less it's willing to commit to."
 variants = {
 "conspiratorial": "A reflection in the corner—someone was watching.",
 "exogenous": "Gravitational lensing over the road. Find that stretch of highway.",
@@ -32,3 +32,123 @@ lead_unlocks = {
 "psychogenic": "lead_highway"
 }
 unlocks_journal_entries = Array[String](["entry_polaroid_01"])
+base_image = "res://assets/art/evidence/polaroid/polaroid_base.webp"
+base_caption = ""
+readings = Array[Dictionary]([{
+"id": "light",
+"label": "A light. Low over the ridge, where nothing should be.",
+"axis": "exogenous",
+"image": "res://assets/art/evidence/polaroid/polaroid_light.webp",
+"caption": "7/2",
+"voice": "RECALL",
+"text": "Not a star. Stars don't sit that low, and they don't come in pairs. Too steady for an aircraft, too bright for a farmhouse. On a scope it would be a clean, hard return: the kind you were told to log as weather.",
+"answers": {
+"what": "Lights over the ridge",
+"when": "1947",
+"where": "Crash Site"
+},
+"lead": "lead_highway",
+"requires_tag": ""
+}, {
+"id": "watcher",
+"label": "A car on the shoulder. Somebody's inside it.",
+"axis": "conspiratorial",
+"image": "res://assets/art/evidence/polaroid/polaroid_watcher.webp",
+"caption": "THEY KNEW",
+"voice": "SUSPICION",
+"text": "A sedan parked where nobody parks, headlights on, the engine almost audible through the print. Two shapes behind the glass, and both of them are looking at the camera. At you. They knew exactly where you'd be standing.",
+"answers": {
+"who": "The men in the sedan",
+"when": "Last Week",
+"where": "Staged Location"
+},
+"lead": "lead_highway",
+"requires_tag": ""
+}, {
+"id": "planted",
+"label": "It was left here for me to find.",
+"axis": "conspiratorial",
+"image": "res://assets/art/evidence/polaroid/polaroid_planted.webp",
+"caption": "for you",
+"voice": "SUSPICION",
+"text": "Look at the road: paper scattered across the asphalt, an envelope face-up like a calling card, and a car already pulling away with its lights on. Nobody loses a photograph in a motel parking lot. Somebody leaves one.",
+"answers": {
+"who": "Whoever left it",
+"why": "To bring me back",
+"where": "Staged Location"
+},
+"lead": "lead_highway",
+"requires_tag": ""
+}, {
+"id": "shadow",
+"label": "I took this. And I wasn't alone.",
+"axis": "psychogenic",
+"image": "res://assets/art/evidence/polaroid/polaroid_shadow.webp",
+"caption": "you were here",
+"voice": "GRIEF",
+"text": "Two shadows on the asphalt, long with the last of the light. One of them is yours; you'd know the slope of your own shoulders anywhere. The other stands close enough to touch. You don't remember anyone beside you. You don't remember taking the picture.",
+"answers": {
+"who": "Someone beside me",
+"when": "Day of the Crash",
+"where": "Accident Site"
+},
+"lead": "lead_highway",
+"requires_tag": ""
+}, {
+"id": "bend",
+"label": "The road is bending. Around nothing.",
+"axis": "exogenous",
+"image": "res://assets/art/evidence/polaroid/polaroid_bend.webp",
+"caption": "NOT A LENS FAULT",
+"voice": "RECALL",
+"text": "The centre line curves where the road runs straight, as if it were stepping around something in the middle distance. The ridge ripples like heat haze. There was no heat. Light doesn't bend like that unless something heavy is sitting in the way.",
+"answers": {
+"what": "Something heavy on the road",
+"when": "1947",
+"where": "Crash Site"
+},
+"lead": "lead_highway",
+"requires_tag": ""
+}, {
+"id": "accident",
+"label": "The road from the accident.",
+"axis": "psychogenic",
+"image": "res://assets/art/evidence/polaroid/polaroid_accident.webp",
+"caption": "I'm sorry",
+"voice": "GRIEF",
+"text": "Skid marks, curving off into the dark. A guardrail folded like paper. One headlamp still burning on the shoulder, and that's the light. That was always the light. You were there. You've been there every night since.",
+"answers": {
+"what": "The crash",
+"when": "Day of the Crash",
+"where": "Accident Site"
+},
+"lead": "lead_highway",
+"requires_tag": ""
+}, {
+"id": "road",
+"label": "It's just a road. Somebody's holiday snap.",
+"axis": "",
+"image": "res://assets/art/evidence/polaroid/polaroid_road.webp",
+"caption": "MM 117 · gas 4 mi",
+"voice": "RECALL",
+"text": "A mile marker on the shoulder. A gas station sign glowing a few miles on. A tourist who couldn't keep their thumb out of the frame. It's a road. You could drive there. That's the problem with ordinary things: they always turn out to be somewhere.",
+"answers": {
+"where": "Mile marker 117"
+},
+"lead": "lead_highway",
+"requires_tag": ""
+}, {
+"id": "radar",
+"label": "That's a radar dome on the ridge.",
+"axis": "exogenous",
+"image": "res://assets/art/evidence/polaroid/polaroid_radar.webp",
+"caption": "SITE 7",
+"voice": "RECALL",
+"text": "White, round, perched on the mountaintop like an egg nobody wants to hatch. You'd know that silhouette in your sleep. You do know it in your sleep. Twenty-two years on a mountain that didn't have a name, and here it is, in a stranger's photograph.",
+"answers": {
+"who": "The Air Force",
+"where": "The radar site"
+},
+"lead": "lead_highway",
+"requires_tag": "radar_operator"
+}])

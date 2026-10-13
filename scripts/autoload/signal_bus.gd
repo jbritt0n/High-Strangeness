@@ -15,3 +15,5 @@ signal energy_changed(value: float, max_value: float)
 signal exhausted
 signal day_started(day: int)
 signal profile_created
+signal inventory_changed(items: Array)
+signal car_changed

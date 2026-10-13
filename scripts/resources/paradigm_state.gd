@@ -24,6 +24,9 @@ extends Resource
 # evidence_id -> axis the evidence was burned/locked under.
 @export var locked_evidence: Dictionary = {}
 
+# evidence_id -> reading id the player currently believes (photo evidence).
+@export var evidence_readings: Dictionary = {}
+
 # Penciled-in answers (changeable).
 @export var w_answers_soft: Dictionary = {
 	"who": "", "what": "", "when": "", "where": "", "why": "",

@@ -6,7 +6,7 @@
 script = ExtResource("1")
 object_id = "metal_fragment"
 display_name = "Twisted Metal Fragment"
-neutral_description = "A shard of metal embedded in rock. Not rusted."
+neutral_description = "A shard of bright metal wedged between the rocks at the edge of the pull-off, folded over on itself like foil. Not rusted. Not dusty. Everything else out here is both."
 variants = {
 "conspiratorial": "Military-grade titanium. Stamped with a serial number.",
 "exogenous": "Alloy impossible. Element 115. Hull debris.",
@@ -28,4 +28,63 @@ w_answers_per_axis = {
 }
 }
 lead_unlocks = {}
-unlocks_journal_entries = Array[String]([])
+unlocks_journal_entries = Array[String](["entry_fragment_01"])
+base_image = ""
+base_caption = ""
+readings = Array[Dictionary]([{
+"id": "hull",
+"label": "It isn't from here. Nothing made here folds like this.",
+"axis": "exogenous",
+"image": "",
+"caption": "",
+"voice": "RECALL",
+"text": "You bend it flat between your thumbs and let go. It folds itself back, slowly, exactly the way it was, like it remembers. Light slides over it in colours metal doesn't have. Whatever it came off of was a great deal bigger, and it came down hard.",
+"answers": {
+"what": "Hull debris",
+"where": "Crash Site"
+},
+"lead": "",
+"requires_tag": ""
+}, {
+"id": "stamped",
+"label": "There's a serial number under the dirt.",
+"axis": "conspiratorial",
+"image": "",
+"caption": "",
+"voice": "SUSPICION",
+"text": "You rub the dirt off the flat side with your sleeve. A stamped number, most of a part code, and a contractor's mark someone has filed nearly smooth. Nearly. Government work. They never file it all the way off. They want you to know who you're dealing with.",
+"answers": {
+"what": "Military hardware",
+"who": "The contractor",
+"where": "Base 8"
+},
+"lead": "",
+"requires_tag": ""
+}, {
+"id": "fender",
+"label": "Chrome trim. Off a car. You know which car.",
+"axis": "psychogenic",
+"image": "",
+"caption": "",
+"voice": "GRIEF",
+"text": "A strip of chrome trim, crumpled where it hit. Your hands know the curve of it before your head does: the line along a door you opened a thousand times. You set it down very carefully, as if it might still be warm.",
+"answers": {
+"what": "Car wreckage",
+"where": "Accident Site"
+},
+"lead": "",
+"requires_tag": ""
+}, {
+"id": "scrap",
+"label": "Scrap. Highways are full of it.",
+"axis": "",
+"image": "",
+"caption": "",
+"voice": "RECALL",
+"text": "Tin off a truck, a hubcap's worth of litter, the kind of thing the wind files away in the rocks. You've walked past ten thousand pieces of it. You're only stopping for this one because you came out here wanting to find something.",
+"answers": {
+"what": "Road debris"
+},
+"lead": "",
+"requires_tag": ""
+}])

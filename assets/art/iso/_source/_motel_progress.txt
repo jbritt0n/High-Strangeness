@@ -1,6 +1,8 @@
-15:41:02 mask occ_car
-15:42:29 mask occ_sign
-15:43:48 mask occ_dumpster
-15:45:05 mask occ_lamp
-15:46:28 mask occ_barrel
-15:47:14 ALL DONE {"occ_car": {"x": 1588, "y": 1000, "w": 427, "h": 303, "pivot": [1801.2, 1222.4]}, "occ_sign": {"x": 2433, "y": 1553, "w": 735, "h": 607, "pivot": [2796.8, 2331.1]}, "occ_dumpster": {"x": 816, "y": 1693, "w": 228, "h": 205, "pivot": [930.0, 1850.3]}, "occ_lamp": {"x": 1173, "y": 1093, "w": 136, "h": 573, "pivot": [1184.6, 1666.4]}, "occ_barrel": {"x": 1043, "y": 1296, "w": 69, "h": 128, "pivot": [1077.1, 1414.7]}}
+19:47:48 raw start
+20:07:56 raw done
+20:09:18 mask occ_car
+20:10:46 mask occ_sign
+20:12:19 mask occ_dumpster
+20:13:47 mask occ_lamp
+20:15:11 mask occ_barrel
+20:15:57 ALL DONE {"occ_car": {"x": 1632, "y": 1068, "w": 329, "h": 215, "pivot": [1801.2, 1222.4]}, "occ_sign": {"x": 2433, "y": 1553, "w": 735, "h": 607, "pivot": [2796.8, 2331.1]}, "occ_dumpster": {"x": 816, "y": 1693, "w": 228, "h": 205, "pivot": [930.0, 1850.3]}, "occ_lamp": {"x": 1173, "y": 1093, "w": 136, "h": 573, "pivot": [1184.6, 1666.4]}, "occ_barrel": {"x": 1043, "y": 1296, "w": 69, "h": 128, "pivot": [1077.1, 1414.7]}}
